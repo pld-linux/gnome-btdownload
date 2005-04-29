@@ -1,34 +1,35 @@
 Summary:	Gnome BitTorrent Downloader
 Name:		gnome-btdownload
 Version:	0.0.20
-Release:	1
-License:	GPL
+Release:	2
+License:	BSD
 Group:		X11/Applications
 Source0:	http://dl.sourceforge.net/gnome-bt/%{name}-%{version}.tar.gz
 # Source0-md5:	dd7ad29c9c5689dc73a736d44dde2bef
+Patch0:		%{name}-desktop.patch
 URL:		http://gnome-bt.sourceforge.net/
-BuildRequires:	python-pygtk-devel >= 1.99
-BuildRequires:  python-gnome-devel
-Requires(post):	GConf2
+BuildRequires:	python-gnome-devel >= 2.10.0
+BuildRequires:	python-pygtk-devel >= 1:2.6.0
 %pyrequires_eq	python
-Requires:	BitTorrent
-Requires:	python-gnome-gconf
-Requires:	python-gnome-applet
-Requires:	python-gnome-ui
-Requires:	python-pygtk-gtk >= 1.99
+Requires:	BitTorrent >= 3.3
+Requires:	python-gnome-extras-applet >= 2.10.0
+Requires:	python-gnome-gconf >= 2.10.0
+Requires:	python-gnome-ui >= 2.10.0
+Requires:	python-pygtk-gtk >= 1:2.6.0
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
-A work-in-progress Gnome "mime-sink" for BitTorrent files. It's not meant to be an entire front-end, just a program that pops up when you "execute" the torrent files
+A work-in-progress Gnome "mime-sink" for BitTorrent files. It's not
+meant to be an entire front-end, just a program that pops up when you
+"execute" the torrent files
 
 %prep
 %setup -q
+%patch0 -p1
 
 %build
-%configure \
-	--disable-schemas-install
-
+%configure
 %{__make}
 
 %install
@@ -37,16 +38,23 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
+rm -r $RPM_BUILD_ROOT%{_datadir}/{application-registry,mime-info}
+
 %find_lang %{name}
-
-%files -f %{name}.lang
-%{_bindir}/%{name}
-%{_datadir}/application-registry/%{name}.applications
-%{_datadir}/applications/%{name}.desktop
-%{_datadir}/%{name}
-%{_mandir}/man1/%{name}.1.gz
-%{_datadir}/mime-info/*
-
 
 %clean
 rm -rf $RPM_BUILD_ROOT
+
+%post
+%update_desktop_database_post
+
+%postun
+%update_desktop_database_postun
+
+%files -f %{name}.lang
+%defattr(644,root,root,755)
+%doc AUTHORS ChangeLog README
+%attr(755,root,root) %{_bindir}/%{name}
+%{_datadir}/applications/%{name}.desktop
+%{_datadir}/%{name}
+%{_mandir}/man1/%{name}.1*
