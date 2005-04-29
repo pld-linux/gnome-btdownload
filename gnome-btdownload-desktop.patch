@@ -1,0 +1,17 @@
+diff -urN gnome-btdownload-0.0.20.orig/share/desktop/gnome-btdownload.desktop gnome-btdownload-0.0.20/share/desktop/gnome-btdownload.desktop
+--- gnome-btdownload-0.0.20.orig/share/desktop/gnome-btdownload.desktop	2005-04-29 10:18:54.000000000 +0200
++++ gnome-btdownload-0.0.20/share/desktop/gnome-btdownload.desktop	2005-04-29 10:23:23.000000000 +0200
+@@ -2,10 +2,12 @@
+ Encoding=UTF-8
+ Name=GNOME BitTorrent
+ Comment=Download files with BitTorrent
++Comment[pl]=Pobieranie plików przy użyciu programu BitTorrent
+ Exec=gnome-btdownload
+ Terminal=false
+ Type=Application
+ StartupNotify=true
+ Icon=/usr/share/gnome-btdownload/pixmaps/download.png
+-Categories=Application;Network;
++Categories=GTK;GNOME;Network;P2P;
+ MimeType=application/x-bittorrent
++# vi: encoding=utf-8
