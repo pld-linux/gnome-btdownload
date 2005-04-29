@@ -10,6 +10,7 @@ Patch0:		%{name}-desktop.patch
 URL:		http://gnome-bt.sourceforge.net/
 BuildRequires:	python-gnome-devel >= 2.10.0
 BuildRequires:	python-pygtk-devel >= 1:2.6.0
+BuildRequires:	rpmbuild(macros) >= 1.197
 %pyrequires_eq	python
 Requires:	BitTorrent >= 3.3
 Requires:	python-gnome-extras-applet >= 2.10.0
