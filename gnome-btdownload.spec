@@ -1,4 +1,5 @@
-Summary:	Gnome BitTorrent Downloader
+Summary:	GNOME BitTorrent Downloader
+Summary(pl):	Narzêdzie do ¶ci±gania protoko³em BitTorrent dla GNOME
 Name:		gnome-btdownload
 Version:	0.0.20
 Release:	2
@@ -21,9 +22,14 @@ BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
-A work-in-progress Gnome "mime-sink" for BitTorrent files. It's not
+A work-in-progress GNOME "mime-sink" for BitTorrent files. It's not
 meant to be an entire front-end, just a program that pops up when you
-"execute" the torrent files
+"execute" the torrent files.
+
+%description -l pl
+Jest to nadal tworzony "mime-sink" GNOME dla plików BitTorrent. Nie ma
+byæ ca³ym frontendem, a tylko programem wyskakuj±cym przy
+"wykonywaniu" plików torrent.
 
 %prep
 %setup -q
@@ -56,6 +62,6 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog README
 %attr(755,root,root) %{_bindir}/%{name}
-%{_datadir}/applications/%{name}.desktop
+%{_desktopdir}/%{name}.desktop
 %{_datadir}/%{name}
 %{_mandir}/man1/%{name}.1*
