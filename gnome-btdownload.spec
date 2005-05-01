@@ -1,4 +1,4 @@
-Summary:	GNOME BitTorrent Downloader
+Summary:	GNOME BitTorrent downloader
 Summary(pl):	Narzêdzie do ¶ci±gania protoko³em BitTorrent dla GNOME
 Name:		gnome-btdownload
 Version:	0.0.20
