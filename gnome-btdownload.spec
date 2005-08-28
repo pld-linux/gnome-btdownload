@@ -1,12 +1,12 @@
 Summary:	GNOME BitTorrent downloader
 Summary(pl):	Narzêdzie do ¶ci±gania protoko³em BitTorrent dla GNOME
 Name:		gnome-btdownload
-Version:	0.0.20
-Release:	2
+Version:	0.0.22
+Release:	1
 License:	BSD
 Group:		X11/Applications
 Source0:	http://dl.sourceforge.net/gnome-bt/%{name}-%{version}.tar.gz
-# Source0-md5:	dd7ad29c9c5689dc73a736d44dde2bef
+# Source0-md5:	b52df0c8b0c28aa0cc8814ff4754cef9
 Patch0:		%{name}-desktop.patch
 URL:		http://gnome-bt.sourceforge.net/
 BuildRequires:	python-gnome-devel >= 2.10.0
