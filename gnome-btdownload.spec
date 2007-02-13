@@ -1,5 +1,5 @@
 Summary:	GNOME BitTorrent downloader
-Summary(pl.UTF-8):   Narzędzie do ściągania protokołem BitTorrent dla GNOME
+Summary(pl.UTF-8):	Narzędzie do ściągania protokołem BitTorrent dla GNOME
 Name:		gnome-btdownload
 Version:	0.0.22
 Release:	1
