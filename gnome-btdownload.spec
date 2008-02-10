@@ -1,24 +1,25 @@
 Summary:	GNOME BitTorrent downloader
 Summary(pl.UTF-8):	Narzędzie do ściągania protokołem BitTorrent dla GNOME
 Name:		gnome-btdownload
-Version:	0.0.22
-Release:	1
+Version:	0.0.32
+Release:	0.2
 License:	BSD
 Group:		X11/Applications
 Source0:	http://dl.sourceforge.net/gnome-bt/%{name}-%{version}.tar.gz
-# Source0-md5:	b52df0c8b0c28aa0cc8814ff4754cef9
+# Source0-md5:	893268ec4ff1d64439e8c5cfbc6db0c7
 Patch0:		%{name}-desktop.patch
 URL:		http://gnome-bt.sourceforge.net/
+BuildRequires:	autoconf
+BuildRequires:	automake
 BuildRequires:	python-gnome-devel >= 2.10.0
 BuildRequires:	python-pygtk-devel >= 1:2.6.0
 BuildRequires:	rpmbuild(macros) >= 1.197
 %pyrequires_eq	python
 Requires:	BitTorrent >= 3.3
-Requires:	python-gnome-extras-applet >= 2.10.0
+#Requires:	python-gnome-extras-applet >= 2.10.0
 Requires:	python-gnome-gconf >= 2.10.0
 Requires:	python-gnome-ui >= 2.10.0
 Requires:	python-pygtk-gtk >= 1:2.6.0
-BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -52,8 +53,13 @@ rm -r $RPM_BUILD_ROOT%{_datadir}/{application-registry,mime-info}
 %clean
 rm -rf $RPM_BUILD_ROOT
 
+
 %post
+%gconf_schema_install gnome-btdownload.schemas
 %update_desktop_database_post
+
+%preun
+%gconf_schema_uninstall gnome-btdownload.schemas
 
 %postun
 %update_desktop_database_postun
@@ -62,6 +68,8 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog README
 %attr(755,root,root) %{_bindir}/%{name}
+%{_sysconfdir}/gconf/schemas/gnome-btdownload.schemas
+%{py_sitescriptdir}/gnomebtdownload
 %{_desktopdir}/%{name}.desktop
 %{_datadir}/%{name}
 %{_mandir}/man1/%{name}.1*
